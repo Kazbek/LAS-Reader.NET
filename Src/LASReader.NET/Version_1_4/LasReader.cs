@@ -60,6 +60,10 @@ namespace LASReader.NET.Version_1_4
         public BigInteger NumberOfPointByReturn { get; set; }
 
 
+        public double SizeX => MaxX - MinX;
+        public double SizeY => MaxY - MinY;
+        public double SizeZ => MaxZ - MinZ;
+
         internal readonly BinaryReader _binaryReader;
         public LasReader(string lasFilePath)
         {
@@ -100,11 +104,12 @@ namespace LASReader.NET.Version_1_4
             ZOffset = _binaryReader.ReadDouble();
 
             MaxX = _binaryReader.ReadDouble();
-            MaxY = _binaryReader.ReadDouble();
-            MaxZ = _binaryReader.ReadDouble();
-
             MinX = _binaryReader.ReadDouble();
+
+            MaxY = _binaryReader.ReadDouble();
             MinY = _binaryReader.ReadDouble();
+
+            MaxZ = _binaryReader.ReadDouble();
             MinZ = _binaryReader.ReadDouble();
 
             StartOfWaveformDataPacketRecord = _binaryReader.ReadUInt64();
