@@ -64,6 +64,10 @@ namespace LASReader.NET.Version_1_4
         public double SizeY => MaxY - MinY;
         public double SizeZ => MaxZ - MinZ;
 
+        public double SizeUnslacedX => SizeX / XScaleFactor;
+        public double SizeUnslacedY => SizeY / YScaleFactor;
+        public double SizeUnslacedZ => SizeZ / ZScaleFactor;
+
         internal readonly BinaryReader _binaryReader;
         public LasReader(string lasFilePath)
         {
@@ -122,7 +126,7 @@ namespace LASReader.NET.Version_1_4
             _binaryReader.BaseStream.Seek(OffsetToPointData, 0);
         }
 
-        public void ReadTo(PointDataFormat7 point)
+        public void ReadTo(PointDataFormat7Light point)
         {
             point.ReadFrom(this);
         }
